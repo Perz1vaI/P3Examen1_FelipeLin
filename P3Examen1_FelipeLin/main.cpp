@@ -102,6 +102,7 @@ int main(int argc, char** argv) {
 
 
                 conway(mat, 0, 0, turnos, x, y);
+                liberarMatriz(mat, x);
 
 
                 break;
@@ -127,36 +128,447 @@ int main(int argc, char** argv) {
 void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
     int vecinos = 0;
     if (turnos == 0) {
+        cout << "termine la cosa" << endl;
         printMatrix(tablero, max_x, max_y);
     } else {
-        if (x == max_x - 1 && y == max_y - 1) {
+        cout << "inicio del ciclo " << turnos << endl;
+        if (x == max_x && y == max_y) {
+            cout << "termino un turno" << endl;
             printMatrix(tablero, max_x, max_y);
             conway(tablero, 0, 0, turnos - 1, max_x, max_y);
         }
-        if (y == max_y - 1) {
+        if (y == max_y) {
+            cout << " aqui se lleno la y al max" << endl;
             conway(tablero, x + 1, 0, turnos, max_x, max_y);
             if (tablero[x][y] == 1) {
-                if ((tablero[x + 1][y] + tablero[x - 1][y] + tablero[x][y + 1] + tablero[x][y - 1] +
-                        tablero[x - 1][y - 1] + tablero[x + 1][y - 1] + tablero[x - 1][y + 1] + tablero[x + 1][y + 1]) == 0) {
-                    tablero[x][y] = 0;
-                } else if ((tablero[x + 1][y] + tablero[x - 1][y] + tablero[x][y + 1] + tablero[x][y - 1] +
-                        tablero[x - 1][y - 1] + tablero[x + 1][y - 1] + tablero[x - 1][y + 1] + tablero[x + 1][y + 1]) == 3 ||
-                        (tablero[x + 1][y] + tablero[x - 1][y] + tablero[x][y + 1] + tablero[x][y - 1] +
-                        tablero[x - 1][y - 1] + tablero[x + 1][y - 1] + tablero[x - 1][y + 1] + tablero[x + 1][y + 1]) == 2) {
-                    tablero[x][y] = 1;
+                if (y == 0 && x == max_x - 1) {
+                    if (tablero[x + 1][y] == 0 && tablero[x][y + 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+
+                } 
+                else if (y == 0) {
+                    if (tablero[x - 1][y] == 0 && tablero[x + 1][y] == 0 && tablero[x][y + 1] == 0 &&
+                            tablero[x - 1][y + 1] == 0 && tablero[x + 1][y + 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
                 }
             }
             if (tablero[x][y] == 0) {
-                if ((tablero[x + 1][y] + tablero[x - 1][y] + tablero[x][y + 1] + tablero[x][y - 1] +
-                        tablero[x - 1][y - 1] + tablero[x + 1][y - 1] + tablero[x - 1][y + 1] + tablero[x + 1][y + 1]) == 3) {
-                    tablero[x][y] = 1;
-                } else {
-                    tablero[x][y] = 0;
+                if (y == 0 && x == max_x - 1) {
+                    if (tablero[x + 1][y] == 0 && tablero[x][y + 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
 
-                }
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (vecinos == 3) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+                } 
+                else if (y == 0) {
+                    if (tablero[x - 1][y] == 0 && tablero[x + 1][y] == 0 && tablero[x][y + 1] == 0 &&
+                            tablero[x - 1][y + 1] == 0 && tablero[x + 1][y + 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (vecinos == 3) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                   }
+                        vecinos = 0;
+                   }
             }
         } else {
-            
+            cout << "aqui incremento la y" << endl;
+
+            if (tablero[x][y] == 1) {
+                cout << " (Incremento en y) tablero es igual a 1 " << endl;
+                if (x == 0 && y == 0) {
+                    
+                    if (tablero[x - 1][y] == 0 && tablero[x][y + 1] == 0 && tablero[x + 1][y + 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                } 
+                else if (x == 0 && y == max_y - 1) {
+                    if (tablero[x][y - 1] == 0 && tablero[x + 1][y] == 0 && tablero[x + 1][y - 1] == 0) {
+                        tablero[x][y] = 0;
+
+                    }
+
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                } 
+                else if (x != 0 && y == max_y - 1) {
+                    if (tablero[x][y - 1] == 0 && tablero[x - 1][y] == 0 && tablero[x - 1][y - 1] == 0 && tablero[x + 1][y] == 0 &&
+                            tablero[x + 1][y - 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                } 
+                else if (x == max_x - 1 && y == max_y - 1) {
+                    if (tablero[x - 1][y] == 0 && tablero[x][y - 1] == 0 && tablero[x - 1][y - 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                } 
+                else if (x == 0 && y > 0) {
+                    if (tablero[x + 1][y] == 0 && tablero[x][y + 1] == 0 && tablero[x + 1][y + 1] == 0 &&
+                            tablero[x][y - 1] == 0 && tablero[x + 1][y - 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+                } 
+                else if (x > 0 && y > 0) {
+                    if (tablero[x + 1][y] == 0 && tablero[x - 1][y] == 0 && tablero[x][y + 1] == 0 && tablero[x][y - 1] == 0 &&
+                            tablero[x - 1][y - 1] == 0 && tablero[x + 1][y - 1] == 0 && tablero[x - 1][y + 1] == 0 &&
+                            tablero[x + 1][y + 1] == 0) {
+                        tablero[x][y] = 0;
+                    }
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (vecinos == 3 || vecinos == 2) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+                }
+            }
+            if (tablero[x][y] == 0) {
+                cout << " (Incremento en y) tablero es igual a 0 " << endl;
+                if (x == 0 && y == 0) {
+                    cout << " (Incremento en y) tablero es igual a 0 y x=0 y=0 " << endl;
+                    if (tablero[x - 1][y] == 1) {
+                                                cout << "hola aqui se mama?" << endl;
+
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                                                cout << "hola aqui se mama?" << endl;
+
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                                                cout << "hola aqui se mama?" << endl;
+
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3) {
+                                                cout << "hola aqui se mama?" << endl;
+
+                        tablero[x][y] = 1;
+                    } else {
+                        cout << "hola aqui se mama?" << endl;
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                } 
+                else if (x == 0 && y == max_y - 1) {
+                    cout << " (Incremento en y) tablero es igual a 0 y x=0 y=19" << endl;    
+
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                }
+                else if (x != 0 && y == max_y - 1) {
+                    cout << " (Incremento en y) tablero es igual a 0 y x!=0 y=19" << endl;    
+
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                }
+                else if (x == max_x - 1 && y == max_y - 1) {
+                    cout << " (Incremento en y) tablero es igual a 0 y x=19 y=19" << endl;
+
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+
+                }
+                else if (x == 0 && y > 0) {
+                    cout << " (Incremento en y) tablero es igual a 0 y x=0 y>0" << endl;
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                    vecinos = 0;
+                }
+                else if (x > 0 && y > 0) {
+                    cout << " (Incremento en y) tablero es igual a 0 y x>0 y>0" << endl;
+                    if (tablero[x + 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y - 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x - 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+                    if (tablero[x + 1][y + 1] == 1) {
+                        vecinos++;
+                    }
+
+                    if (vecinos == 3) {
+                        tablero[x][y] = 1;
+                    } else {
+                        tablero[x][y] = 0;
+                    }
+                }
+            }
+            cout << "se suma la y (y+1)";
             conway(tablero, x, y + 1, turnos, max_x, max_y);
         }
 
