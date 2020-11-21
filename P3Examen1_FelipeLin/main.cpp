@@ -321,7 +321,7 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
                     if (tablero[x - 1][y] == 1) {
                         vecinos++;
                     }
-                    if (tablero[x 1][y + 1] == 1) {
+                    if (tablero[x][y + 1] == 1) {
                         vecinos++;
                     }
 
@@ -499,7 +499,7 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
                     if (tablero[x - 1][y] == 1) {
                         vecinos++;
                     }
-                    if (tablero[x 1][y + 1] == 1) {
+                    if (tablero[x][y + 1] == 1) {
                         vecinos++;
                     }
 
