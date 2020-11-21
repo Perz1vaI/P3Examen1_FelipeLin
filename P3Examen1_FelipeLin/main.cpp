@@ -129,17 +129,13 @@ int main(int argc, char** argv) {
 void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
     int vecinos = 0;
     if (turnos == 0) {
-        cout << "termine la cosa" << endl;
         printMatrix(tablero, max_x, max_y);
     } else {
-        cout << "inicio del ciclo " << turnos << endl;
         if (x == max_x - 1 && y == max_y - 1) {
-            cout << "termino un turno" << endl;
             printMatrix(tablero, max_x, max_y);
             conway(tablero, x, y, turnos - 1, max_x, max_y);
         }
         if (y == max_y) {
-            cout << " aqui se lleno la y al max" << endl;
             conway(tablero, x + 1, 0, turnos, max_x, max_y);
             if (tablero[x][y] == 1) {
                 if (y == 0 && x == max_x - 1) {
@@ -238,12 +234,9 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
             }
         }
         else {
-            cout << "aqui incremento la y" << endl;
 
             if (tablero[x][y] == 1) {
-                cout << " (Incremento en y) tablero es igual a 1 " << endl;
                 if (x == 0 && y == 0) {
-                    cout << " (Incremento en y) tablero es igual a 1 y x=0 y=0 " << endl;
 
                     if (tablero[x + 1][y] == 0 && tablero[x][y + 1] == 0 && tablero[x + 1][y + 1] == 0) {
                         tablero[x][y] = 0;
@@ -430,9 +423,7 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
                     vecinos = 0;
                 }
             } else if (tablero[x][y] == 0) {
-                cout << " (Incremento en y) tablero es igual a 0 " << endl;
                 if (x == 0 && y == 0) {
-                    cout << " (Incremento en y) tablero es igual a 0 y x=0 y=0 " << endl;
 
                     if (tablero[x + 1][y] == 1) {
 
@@ -457,7 +448,6 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
 
                 } 
                 else if (x == 0 && y == max_y - 1) {
-                    cout << " (Incremento en y) tablero es igual a 0 y x=0 y=19" << endl;
 
                     if (tablero[x][y - 1] == 1) {
                         vecinos++;
@@ -478,7 +468,6 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
 
                 }
                 else if (x != 0 && y == max_y - 1) {
-                    cout << " (Incremento en y) tablero es igual a 0 y x!=0 y=19" << endl;
 
                     if (tablero[x][y - 1] == 1) {
                         vecinos++;
@@ -524,7 +513,6 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
 
                 } 
                 else if (x == max_x - 1 && y == max_y - 1) {
-                    cout << " (Incremento en y) tablero es igual a 0 y x=19 y=19" << endl;
 
                     if (tablero[x][y - 1] == 1) {
                         vecinos++;
@@ -545,7 +533,6 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
 
                 }
                 else if (x == 0 && y > 0) {
-                    cout << " (Incremento en y) tablero es igual a 0 y x=0 y>0" << endl;
                     if (tablero[x + 1][y] == 1) {
                         vecinos++;
                     }
@@ -570,7 +557,6 @@ void conway(int** tablero, int x, int y, int turnos, int max_x, int max_y) {
                     vecinos = 0;
                 }
                 else if (x > 0 && y > 0) {
-                    cout << " (Incremento en y) tablero es igual a 0 y x>0 y>0" << endl;
                     if (tablero[x + 1][y] == 1) {
                         vecinos++;
                     }
